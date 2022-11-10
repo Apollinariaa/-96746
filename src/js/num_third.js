@@ -1,4 +1,17 @@
 /*jshint esversion: 8 */
+
+
+// класс калькулятор, который находит сумму всех площадей
+class Calculator {
+	constructor(array){
+		this.array = array;
+	} 
+	sum() {
+		return this.array.reduce((sum, figure) => sum + figure.square(),0);
+	}
+}
+
+// базовый класс фигура
 class Figure {
 	constructor(a, b = a) {
 		this.a = a;
@@ -9,6 +22,7 @@ class Figure {
 	}
 }
 
+// классы фигур, которые наследуются от Figure
 class Square extends Figure {
 	constructor(a) {
 		super(a);
@@ -42,25 +56,5 @@ class Triangle extends Figure {
 	}
 }
 
-const triangle = new Triangle(2).square();
-console.log(triangle);
-
-const circle = new Circle(1).square();
-console.log(circle);
-
-const square = new Square(10).square();
-console.log(square);
-
-const rectangle = new Rectangle(10,5).square();
-console.log(rectangle);
-
-function calsFunc(arr) {
-	let sumSquare = 0;
-	arr.forEach((figure) => {
-		sumSquare += figure.square();
-	});
-	return sumSquare;
-}
-
-const sumSquare = calsFunc([new Rectangle(10,5),new Square(10),new Triangle(2)]);
-console.log(`Сумма всех площадей фигур = ${sumSquare}`);
+const calc = new Calculator([new Rectangle(10,5),new Square(10)]);
+console.log(calc.sum());
